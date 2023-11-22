@@ -16,21 +16,21 @@ void setup() {
 }
 
 void loop() {
-  // Check button states
+  // Checking button states
   for (int i = 0; i < numButtons; i++) {
     if (digitalRead(buttonPins[i]) == LOW) {
       sendNoteOn(i + 1, 127); // Note numbers start from 1
-      delay(100); // Adjust this delay according to your needs
+      delay(100);
       sendNoteOff(i + 1, 0);
     }
   }
 
-  // Read potentiometer values and send control change messages
+  
   for (int i = 0; i < numPotentiometers; i++) {
     int potValue = analogRead(potentiometerPins[i]);
     int mappedValue = map(potValue, 0, 1023, 0, 127);
     sendControlChange(i + 1, mappedValue); // Control numbers start from 1
-    delay(10); // Adjust this delay according to your needs
+    delay(10);
   }
 }
 
